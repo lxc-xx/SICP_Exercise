@@ -1,0 +1,22 @@
+(define (cont-frac n d k)
+  (define (iter acc now)
+    (if (= now 0)
+      acc
+      (iter (/ (n now)
+               (+ (d now)
+                  acc))
+            (- now 1))))
+  (iter 0 k))
+
+(define (cont-frac-rec n d k)
+  (if (<= k 1)
+    (/ (n 1)
+       (d 1))
+    (/ (n k)
+       (+ (d k)
+          (cont-frac-rec n d (- k 1))))))
+
+(newline)
+(display (cont-frac (lambda (i) 1.0)
+                    (lambda (i) 1.0)
+                    2))
